@@ -1,250 +1,69 @@
-### Exercises with ArrayList, Scanner and Files
-Today's tasks should be coded using the IntelliJ IDE. For each Task you will create a new project, as each task will require you to create a Main class with a main method (except for Task 2). 
-In some tasks you will write all the code in this main method, while in others you will be asked to make both a Main class with a main method in it (sometimes refered to as the "client class") and an "entity class" whithout a main method but with a constructor. 
-
-NOTE: Task 4 and 6 are not easy. Follow the steps as long as you can. Use the hints and codesnippets provided. The goal is to prepare yourself for review, where we will code it together. 
-
----
-## Task 1:ArrayList basics
-In this task you will make two entity classes and a class to test them. The entity classes represents students and their courses. 
-
-1.a: Start a new project and create a class called Course. The Course class should have one field/instanse variable/attribute (different names for the same thing) called <code>name</code> of the type String. The field should be declared private. 
-
-1.b: Create another class called Student. The Student class should have two fields/instans variables: <code>name</code> of the type String and <code>courses</code> of the type ArrayList\<Course\>. Both fields should be declared private. Make sure that the variable <code>courses</code> is given a value. You should make a new ArrayList (using the keyword new) and assign it to the variable <code>courses</code>.
-
-<details>
-  <summary>Hint</summary>
-  <p>Remember to import java.util.ArrayList.
-  The beginning of the class should look like this
-  <code>import java.util.ArrayList; 
-  public class Student{
-  </code>
-  </p>
-</details>
-
-1.c: Make a constructor for the Course class. The constructor should take one parameter; a <code>String name</code>. 
-Make a constructor for the Student class. The constructor should also take one parameter; <code>String name</code>.
-
-1.d: Make a method <code>addCourse</code> in the Student class. The method should take a Course-object as a parameter and add it to the Student's ArrayList <code>courses</code>.
-
-1.e: Make toString()-methods for both classes. Have the toString-methods return nice Strings-representations of the objects, for instance <i>"Student: " + name</i> for the Student-objects. 
-<details>
-  <summary>Hint</summary>
-  <p>You can read about toString <a href="https://www.geeksforgeeks.org/object-tostring-method-in-java/">here</a>.
-  </p>
-</details>
-
-1.f: Test your classes by making a class called TestStudents with a main-method, where you play around with the object. You can take a look at the TestStudents-class provided (TestStudents.java) for inspiration. 
-
-## Task 2: Scanner basics: calculate retirement age
-2.a: Start a new project and create a class called Main with a main method.
-
-2.b: In the main method start by printing a message to the user: "Please type your name".
-
-2.c: Instantiate (create) a Scanner object for reading the command line (remember to import the Scanner class from the util library: <code>import java.util.Scanner; </code>)
-<details>
-  <summary>Hint</summary>
-  <p>Remember that Scanner can take System.in as an argument to the constructor. System.in reads from the terminal/command prompt just as System.out prints to it.</p>
-</details>
-
-2.d: Declare a String variable, <code>name</code> and assign the content of the Scanner to it.
-<details>
-  <summary>Hint</summary>
-  <p>
-    The user input will be returned by <code>
-    scanner.nextLine();
-    </code>
-  </p>
-</details>
-<details>
-  <summary>Solution to this step</summary>
-  <p>
-    <code>
-    Scanner scanner = new Scanner(System.in);
-    String name = scan.nextLine();
-</code>
-</p>
-</details>
-
-2.e: Print the value the user writes (print the <code>name</code> variable).
-
-2.f: Print another message to the user: "Please type your age"
-
-2.g: Declare another variable of type int, <code>age</code>, and assign the content of the Scanner to it (you may reuse the Scanner object created in 2.c).
-<details>
-  <summary>Hint</summary>
-  <p>You will need to use <i>another</i> of Scanner's methods to read the content as you are now reading an int and not a String. You can get an overview of Scanner's methods in the <a href="https://docs.oracle.com/javase/8/docs/api/">Java API</a>.</p>
-</details>
-
-2.h: Print the value the user writes (print the <code>age</code> variable).
-
-2.i: Declare a third variable of type int. You can call this <code>result</code> or whatever you want. To this variable, assign the calculated number of years until the user can retire. You may assume retirement starts at 67 years. Print the result.
-
----
-
-## Task 3: Finish the GuessANumber class
-3.a Open the java file above called GuessANumber.java and try to finish the code. Follow the steps written as comments in the <code>makeAGuess</code> method. Recursion is mentioned. This means that the method must call itself. If you cannot make recursion work, you can use a loop inside the method instead. 
-<details>
-  <summary>Not sure about recursion?</summary>
-  <p><a href="https://www.geeksforgeeks.org/recursion-in-java/">Read about it here</a></p>
-</details>
----
-
-## Task 4. Textbased menu for a game
-In this program the user is presented with a list of actions. When he types a number associated with an action, the program will print a response that corresponds to that action.
-
-4.a Create an entity class, <code>Menu</code> with a private field/instanse variable, <code>options</code> of type ArrayList\<String\>. 
- <details>
-  <summary>Hint</summary>
-  <p>Remember to import java.util.ArrayList.
-  </p>
-</details>
-Add a constructor with a parameter of type ArrayList.  
-Assign the value received, to the <code>options</code> field. 
+![556653307214670](https://user-images.githubusercontent.com/26737628/197711434-2a988f83-94ca-49ee-84f8-d04cf61cb02a.png)
 
+Beregning af registreringsafgifter
 
-4.b Create a client class, <code>Main</code> with a main method. 
-(You will use this class to test the <code>Menu</code> class).
+I skal lave et system til en biludlejningsvirksomhed. Systemet skal automatisk kunne beregne den samlede registreringsafgift for hele flåden af biler, som udlejningsfirmaet besidder.
 
-4.c In the main method create an ArrayList\<String\> Call the ArrayList-variable <code>actions</code>. Add the following String values to the <code>actions</code> ArrayList:
-"1) Start game"
-"2) Resume game"
-"3) Pause game"
-"4) End game"
+1\.    For en Benzinbil er afgiften afhængig af kilometer pr liter. Hvis den kører mellem 20 km/l og 50 km/l er prisen 330 kr, mellem 15 km/l og 20 km/l er prisen 1050 kr, mellem 10 km/l og 15 km/l er prisen 2340 kr, mellem 5 km/l og 10 km/l er prisen 5500kr, og under 5 km/l er prisen 10470 kr.
 
-<details>
-  <summary>Tip for testing:</summary>
-You can test the actions ArrayList by printing one of the elements:
+2\.    For en Elbil gælder de samme regler som for en benzinbil, blot skal man først omregne watt-timer pr kilometer til km/l. Det gøres ved at dividere Wh/km med 91,25 og dernæst dividere 100 med dette tal. Se evt. formlen her: <https://fdm.dk/alt-om-biler/dine-rettigheder/boder-afgifter/ejerafgift-elbil>.
 
-<code>
-System.out.print(actions.get(2)) // expected output: "Pause game"
-</code>
-</details>
+3\.    For en Dieselbil er der samme afgift som for benzinbilen, plus en udligningsafgift, som også er afhængig af km/l. Hvis bilen kører mellem 20 km/l og 50 km/l er udligningsafgiften 130 kr, kører den mellem 15 km/l og 20 km/l er den 1390 kr, kører den mellem 10 km/l og 15 km/l er den 1850 kr, kører den mellem 5 km/l og 10 km/l er den 2770 kr, og kører den under 5 km/l er den 15260 kr. Der er desuden en partikeludledningsafgift på 1000 kr hvis bilen ikke har et partikelfilter monteret.
 
-4.d Still in the main method, instantiate (create an object of) the Menu class with the <code>actions</code> ArrayList as an argument to the constructor. 
+Bilerne
+-------
 
-4.e Create a method in the Menu class, <code>showMenu</code> that prints the sentence "Type a number to choose" and then prints each element in the <code>options</code> ArrayList.
-The output should resemble the list shown in 4.c.
+Der skal være følgende interfaces og klasser til at repræsentere biler (se også diagrammet herover):
 
- <details>
-  <summary>Hint</summary>
-  <p>use a <code>for-each</code>loop for printing the options
-  </p>
-</details>
+1\.    Interface Car. Skal have følgende metoder:
 
-4.f Still in the <code>showMenu</code> method, create a new Scanner object that reads from the terminal/command prompt by using System.in. Declare a String variable <code>choice</code> and assign it the user's input. 
+a.    String getRegistrationNumber(); //The number on the number plate
 
-<details>
-  <summary>Hint</summary>
-  <p>
-    The user input will be returned by <code>
-    scanner.nextLine();
-    </code>
-  </p>
-</details>
+b.    String getMake(); // The make of the car e.g. Audi
 
-<details>
-  <summary>Solution to this step</summary>
-  <p>
-    <code>
-    Scanner scan = new Scanner(System.in);
-    String choice = scan.nextLine();
-</code>
-</p>
-</details>
+c.    String getModel(); // The model of the car e.g. A6
 
-4.g Let the <code>showMenu</code> method return the user's choice (as a String). 
+d.    Int getNumberOfDoors(); // The number of doors
 
-4.h Create a method in the Main class, for testing that the user dialog in the Menu class works as expected (this method needs to be static). The method should have this signature: <code>public static void doAction(int action)</code>. The <code> int action </code> parameter represents the user's choice of action. 
+e.    Int getRegistrationFee(); // Calculates the registration fee for the car
 
-4.i In the body of the <code>doAction</code> method, write a <code>switch-case</code> whith a case for each of the 4 actions added in step 4.b. In each case block you will print a message that corresponds to the user's choice of action:
-   + 1: "Starting the game now"
-   + 2: "Fetching previously saved game data"
-   + 3: "Game paused"
-   + 4: "Ending game"
+2\.    Abstrakt klasse ACar. Skal implementere Car interfacet og alle metoderne i dette, undtagen getRegistrationFee(). Lav klasse attributter til at holde styr på registreringsnummer (nummerplade), mærke, model og antal døre. (Husk at bruge engelske navne til alt). Overvej hvilke attributter det giver mening at lave final.
 
+3\.    Abstrakt Klasse AFuelCar. Denne klasse skal nedarve fra Acar. Den skal tilføje to metoder:
 
-4.j In the main method call the <code>showMenu</code> -method on the Menu instance, saving the return value (the user response) in a variable. Convert the value to an int before using it as an argument in a call to the <code>doAction</code> method in Main.
+a.    abstract String getFuelType(); // should return "Gasoline" or "Diesel"
 
-<details>
-  <summary>Hint: Konvertering af String til int</summary>
-  <p>
-    <code>
-    String response = showMenu();
-    int convertedResponse = Integer.parseInt(response);
-    doAction(convertedResponse);
+b.    int kmPrLitre(); // should return how many kilometres the car can drive on 1 litre of fuel
 
-</code>
-</p>
-</details>
----
-## Task 5: load file and write to file basics
-[...]
+Lav en attribut til at gemme kilometer per liter og initialisér den i konstruktøren.
 
----
+4\.    Klasse GasolineCar. Denne klasse nedarver fra FuelCar og skal implementere de to abstrakte metoder getFuelType() og getRegistrationFee(). Registreringsafgiften skal beregnes ud fra beskrivelsen i toppen af opgaven.
 
-## Task 6: load coffee menu for a cafe
-In this program we will load a list of coffee names and display it to the user. We will create a <code>Cafe</code> class that loads the list and a <code>Main</code> class that tests that the Cafe class works as expected.
+5\.    Klasse DieselCar. Denne klasse nedarver også fra FuelCar og skal også implementere de to abstrakte metoder getFuelType() og getRegistrationFee(). Herudover skal der være en metode, hasParticleFilter(), der fortæller om bilen har et partikelfilter monteret. Registreringsafgiften skal beregnes ud fra beskrivelsen i toppen af opgaven.
 
-6.a Above you will see a file called coffees.txt. Open it and check that is contains 5 names for types of coffee. Download it, or copy it to a new textfile and save it with the same name. Place coffees.txt in the same folder as the classes you will write for this task.
+6\.    Klasse ElectricCar. Denne klasse nedarver fra ACar. Den skal tilføje metoderne:
 
-6.b Create a class called <code>Main</code> with a main method. 
+a.    getBatteryCapacityKWh(); // returns the battery capacity in kilowatt hours
 
-6.c Create another class called <code>Cafe</code>. Give it an attribute (also called field/instanse variable) called <code>coffeeMenu</code> of type ArrayList\<String\>. 
-(Later you will fill this ArrayList with the names of the coffees from the textfile).
+b.    getMaxRangeKm(); // returns the maximum range in kilometres.
 
+c.    getWhPrKm(); // returns the power consumption in watt hours per driven kilometre.
 
-6.c In the <code>Cafe</code> class, add a method <code>loadMenuData</code> 
-Have the method load the coffees.txt file like this:
-<code>File file = new File("coffees.txt) </code>  
-(make sure that the path is right)
+Lav attributer til battery capacity og max range, som initialiseres i konstruktøren. Beregn watt-timer per kilometer ud fra disse to attributter.
 
+De tre konkrete (ikke-abstrakte) klasser, GasolineCar, DieselCar og ElectricCar skal overskrive toString() metoden, så den returnerer en String, der repræsenterer bilen på en overskuelig måde.
 
-6.d In this step you will read from the file, using a Scanner object: Add the <code>file</code> instance to a new Scanner object. (This piece of code will need to be wrapped in a try -catch block)
+Du kan evt. overskrive toString() i Acar klassen, så den returnerer en String med de attributter, der er fælles for alle biler og overskrive toString() i FuelCar klassen så den bruger super klassens toString() og tilføjer km/l.
 
-The solution to this step is given below, but give it a go before peeping.
-<details>
-  <summary> The solution to this step:
-  </summary>
-  <code>try {
+Herefter kan de tre konkrete klasser kalde deres super-klassers toString() metode og blot tilføje de ekstra attributter, der er i den konkrete biltype.
 
-         Scanner scan = new Scanner(file); 
+Flåden af biler
+---------------
 
-     }catch(FileNotFoundException e){
+Der skal en klasse FleetOfCars, der indeholder en ArrayList<Car>, der kan indeholde alle bilerne, som udlejningsfirmaet råder over. Klassen skal indeholde en metode til at tilføje en bil til flåden. Den skal overskrive toString(), så den returnerer en String, der lister alle bilerne i flåden. Sidst men ikke mindst skal den have en metode, getTotalRegistrationFeeForFleet(), der beregner den samlede registreringsafgift for hele bilflåden.
 
-        System.out.println("File not found. Check path and filename");  
+Skriv en main-metode der instantierer et FleetOfCars-objekt og et antal bil-objekter af de 3 konkrete typer. Tilføj bilerne til flåden. Skriv alle bilerne ud, og kald også getTotalRegistrationFeeForFleet() -metoden og skriv resultatet ud.
 
-      }
-</code>
-</details>
+Aflevering:
 
-
-6.e Inside the try block from the last step, you will now add this piece of code that loops over the lines of the textfile:
-
-
-Use a while loop with hasNextLine() on the Scanner instance, to loop over the lines of the file and add the lines to the coffees ArrayList in this class.
-<details>
-  <summary> peep solution:
-  </summary>
-<code>
-
-  while(scan.hasNextLine()){
-
-        coffeeMenu.add(scan.nextLine());
-
-  }
-
-</code>      
-</details>
-
-6.g In the main method create a new instance of the Cafe class and call its <code>loadMenuData</code> -method.
-
-6.h Still in the main method, print all the elements of the  attribute <code>coffeeMenu</code> of the Cafe instance you just created.
-<details>
-  <summary> Hint:</summary>
-  You should use a for-loop, and in the body of the loop use the <code>get()</code> method of ArrayList, to get hold of the item before printing it.  
-</details>
-
-
-
-
+Lav et nyt repository på gitHub og aflever linket.
