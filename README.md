@@ -1,69 +1,96 @@
-![556653307214670](https://user-images.githubusercontent.com/26737628/197711434-2a988f83-94ca-49ee-84f8-d04cf61cb02a.png)
+DAT 1. semester - SP3
+=====================
 
-Beregning af registreringsafgifter
+-- en streamingtjeneste
+======================
 
-I skal lave et system til en biludlejningsvirksomhed. Systemet skal automatisk kunne beregne den samlede registreringsafgift for hele flåden af biler, som udlejningsfirmaet besidder.
+1 Opgaven
+---------
 
-1\.    For en Benzinbil er afgiften afhængig af kilometer pr liter. Hvis den kører mellem 20 km/l og 50 km/l er prisen 330 kr, mellem 15 km/l og 20 km/l er prisen 1050 kr, mellem 10 km/l og 15 km/l er prisen 2340 kr, mellem 5 km/l og 10 km/l er prisen 5500kr, og under 5 km/l er prisen 10470 kr.
+I SP3 skal I lave en objektorienteret analyse af et domæne, og ud fra analysen lave et objektorienteret design af jeres løsning. Derefter skal I implementere løsningen i Java. I jeres løsning skal I anvende basale Java-konstruktioner som klasser, metoder, interfaces, løkker, betingelser, ArrayLists mv.
 
-2\.    For en Elbil gælder de samme regler som for en benzinbil, blot skal man først omregne watt-timer pr kilometer til km/l. Det gøres ved at dividere Wh/km med 91,25 og dernæst dividere 100 med dette tal. Se evt. formlen her: <https://fdm.dk/alt-om-biler/dine-rettigheder/boder-afgifter/ejerafgift-elbil>.
+--
 
-3\.    For en Dieselbil er der samme afgift som for benzinbilen, plus en udligningsafgift, som også er afhængig af km/l. Hvis bilen kører mellem 20 km/l og 50 km/l er udligningsafgiften 130 kr, kører den mellem 15 km/l og 20 km/l er den 1390 kr, kører den mellem 10 km/l og 15 km/l er den 1850 kr, kører den mellem 5 km/l og 10 km/l er den 2770 kr, og kører den under 5 km/l er den 15260 kr. Der er desuden en partikeludledningsafgift på 1000 kr hvis bilen ikke har et partikelfilter monteret.
+2 Domænet
+---------
 
-Bilerne
--------
+I projektet skal I udvikle et softwaresystem til brug for streamingtjenester som Netflix, HBO, Viaplay etc.
 
-Der skal være følgende interfaces og klasser til at repræsentere biler (se også diagrammet herover):
+I systemet er der medier, der kan afspilles. Medier kan være film eller serie-episoder. Både film og serier er inddelt i kategorier som fx crime, war, drama, family, romance og sci-fi. Serier består desuden af sæsoner og episoder. Alle medier har et udgivelsesår og en rating.
 
-1\.    Interface Car. Skal have følgende metoder:
+I systemet er der også brugere, som har lister over de film, de har set og de film, de gerne vil se.
 
-a.    String getRegistrationNumber(); //The number on the number plate
+Vi laver i første omgang ikke nogen grafisk brugergrænseflade til systemet, men laver det rent tekstbaseret.
 
-b.    String getMake(); // The make of the car e.g. Audi
+3\. Funktionelle krav
+---------------------
 
-c.    String getModel(); // The model of the car e.g. A6
+Der er følgende krav til systemet:
 
-d.    Int getNumberOfDoors(); // The number of doors
+-   Der skal være en startmenu, hvor brugeren kan vælge mellem at
+-   Oprette sig som bruger
+-   Logge sig ind som bruger
+-   Der skal være en hovedmenu (i tekst), hvor brugeren kan vælge mellem at
+-   Søge efter en bestemt film
+-   Søge efter alle film i en kategori
+-   Se sin liste over sete film
+-   Se sin liste over gemte film
+-   Når brugeren får præsenteret en liste over alle film i en kategori, alle sete film eller alle gemte film, skal brugeren kunne vælge én af filmene
+-   Når brugeren har valgt en film, skal det være muligt at vælge mellem at afspille filmen (dette gøres naturligvis ikke "rigtigt" men blot ved at der udskrives "Titanic afspilles nu.." eller noget lignende), gemme filmen i sin liste over film, han eller hun ønsker at se senere eller slette filmen fra listen over film, han eller hun vil se senere. Vælger brugeren at afspille filmen, skal den gemmes i hans eller hendes liste over afspillede film.
+-   Brugernes login-oplysninger (brugernavn og password) skal gemmes i en fil, så de kan indlæses når programmet startes op igen. 
+-   Der skal være fornuftig håndtering af fejl. Hvis der opstår fejl i programmet skal de håndteres passende steder og brugeren skal informeres, hvis det er relevant. Overvej hvem fejlen skal kommunikeres til. En IOException (som kan opstå, når man læser ind fra en fil) vil fx gøre, at programmet fra brugerens synspunkt ikke virker. Hvordan formidler vi til brugeren, at der er opstået en fejl?
 
-e.    Int getRegistrationFee(); // Calculates the registration fee for the car
+Der *kan* tænkes en masse ekstra features ind, som fx (ikke prioriteret rækkefølge)
 
-2\.    Abstrakt klasse ACar. Skal implementere Car interfacet og alle metoderne i dette, undtagen getRegistrationFee(). Lav klasse attributter til at holde styr på registreringsnummer (nummerplade), mærke, model og antal døre. (Husk at bruge engelske navne til alt). Overvej hvilke attributter det giver mening at lave final.
+-   En bruger vil gerne søge efter film, der har rating større end 8,5
+-   En bruger vil gerne søge efter film fra 80'erne
+-   Der skal kunne tilføjes og fjernes kategorier på en nem måde, fx "Christmas" eller "Halloween"
+-   Der skal kunne tilføjes film, serier, sæsoner og episoder hvis brugeren er administrator
+-   Data om brugere skrives ned i en fil, når programmet lukkes.
+-   En bruger kan være klassificeret som "barn" og må således kun se film i kategorien "Family"
+-   Der skal kunne tilføjes nye typer medier, som fx e-bøger, lydbøger eller spil
+-   I kan lave en grafisk brugergrænseflade med Processing eller med Java Swing eller Java FX
 
-3\.    Abstrakt Klasse AFuelCar. Denne klasse skal nedarve fra Acar. Den skal tilføje to metoder:
+4\. Data
+--------
 
-a.    abstract String getFuelType(); // should return "Gasoline" or "Diesel"
+I skal i løsningen hente data om film og serier fra .txt-filer, som I får udleveret. Start med at lave en funktion, som kan indlæse data fra filerne og fylde nogle ArrayLists med film, serier, episoder, etc.
 
-b.    int kmPrLitre(); // should return how many kilometres the car can drive on 1 litre of fuel
+Der er også zip-filer med billeder, som I kan bruge hvis I vælger at lave grafisk brugergrænseflade. 
 
-Lav en attribut til at gemme kilometer per liter og initialisér den i konstruktøren.
+5 Aflevering
+------------
 
-4\.    Klasse GasolineCar. Denne klasse nedarver fra FuelCar og skal implementere de to abstrakte metoder getFuelType() og getRegistrationFee(). Registreringsafgiften skal beregnes ud fra beskrivelsen i toppen af opgaven.
+Opgaven skal afleveres senest fredag d. 11.11 kl. 00. Dette gøres ved at placere koden i et git repository og og aflevere linket i PeerGrade. Opgaven kan afleveres som gruppe.
 
-5\.    Klasse DieselCar. Denne klasse nedarver også fra FuelCar og skal også implementere de to abstrakte metoder getFuelType() og getRegistrationFee(). Herudover skal der være en metode, hasParticleFilter(), der fortæller om bilen har et partikelfilter monteret. Registreringsafgiften skal beregnes ud fra beskrivelsen i toppen af opgaven.
+--
 
-6\.    Klasse ElectricCar. Denne klasse nedarver fra ACar. Den skal tilføje metoderne:
+6 Gode Råd
+----------
 
-a.    getBatteryCapacityKWh(); // returns the battery capacity in kilowatt hours
+Prioritering
 
-b.    getMaxRangeKm(); // returns the maximum range in kilometres.
+Løs hellere nogle delproblemer godt end alle overfladisk. Det er *meget *bedre udtrykkeligt at beslutte, at et specielt delproblem (fx. "brugeren skal kunne se sin liste over film") slet ikke håndteres i systemet (og skrive det på en mangelliste!), end at programmere en uigennemtænkt, uafprøvet løsning til delproblemet. Sådan en delløsning kan komplicere den samlede softwareløsning, reducere dens brugbarhed og vanskeliggøre videreudvikling.
 
-c.    getWhPrKm(); // returns the power consumption in watt hours per driven kilometre.
+Divide and Conquer
 
-Lav attributer til battery capacity og max range, som initialiseres i konstruktøren. Beregn watt-timer per kilometer ud fra disse to attributter.
+Lad være med at lave alt på én gang. 
 
-De tre konkrete (ikke-abstrakte) klasser, GasolineCar, DieselCar og ElectricCar skal overskrive toString() metoden, så den returnerer en String, der repræsenterer bilen på en overskuelig måde.
+Forsøg at se på hvert delproblem for sig, og løs hvert delproblem før I starter på noget nyt
 
-Du kan evt. overskrive toString() i Acar klassen, så den returnerer en String med de attributter, der er fælles for alle biler og overskrive toString() i FuelCar klassen så den bruger super klassens toString() og tilføjer km/l.
+-      Eksempel: Lav funktionalitet, som kan fylde ArrayLists med film, serier og brugere
 
-Herefter kan de tre konkrete klasser kalde deres super-klassers toString() metode og blot tilføje de ekstra attributter, der er i den konkrete biltype.
+-      Eksempel: Lav funktionalitet, som tillader brugeren at oprette sig som bruger
 
-Flåden af biler
+Start simpelt
+
+Hvis noget virker meget uoverskueligt, så *Solve a Simpler Problem First*. Lav en løsning der er åbenlyst utilstrækkelig, men dog et skridt i den rigtige retning. Derefter er I meget klogere, og kan tage et nyt
+
+Fx kan man starte med kun at have film og kun at have én bruger.
+
+7 Gruppearbejde
 ---------------
 
-Der skal en klasse FleetOfCars, der indeholder en ArrayList<Car>, der kan indeholde alle bilerne, som udlejningsfirmaet råder over. Klassen skal indeholde en metode til at tilføje en bil til flåden. Den skal overskrive toString(), så den returnerer en String, der lister alle bilerne i flåden. Sidst men ikke mindst skal den have en metode, getTotalRegistrationFeeForFleet(), der beregner den samlede registreringsafgift for hele bilflåden.
+En del af udfordringen er at I skal samarbejde i en gruppe. Det er derfor ikke muligt at arbejde solo med denne opgave. Før I starter arbejdet bør I snakke om i gruppen hvordan I vil arbejde, hvor ofte og hvor længe. Sørg for at organisere arbejdet så det bliver ligeligt fordelt, eller sådan at hver opgave passer til den enkeltes evner og interesser. Sørg for at jeres klassediagram hele tiden er i en tilstand hvor det fungerer som aftale for hvad der bliver kodet.
 
-Skriv en main-metode der instantierer et FleetOfCars-objekt og et antal bil-objekter af de 3 konkrete typer. Tilføj bilerne til flåden. Skriv alle bilerne ud, og kald også getTotalRegistrationFeeForFleet() -metoden og skriv resultatet ud.
-
-Aflevering:
-
-Lav et nyt repository på gitHub og aflever linket.
+Vi ser hellere at alle i gruppen kan bevare overblik over koden end at enkelte gruppemedlemmer får implementeret af en masse features.
